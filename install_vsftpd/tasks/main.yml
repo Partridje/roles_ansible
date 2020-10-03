@@ -9,6 +9,8 @@
       template:
         src: vsftpd.j2
         dest: /etc/vsftpd/vsftpd.conf
+      notify:
+        - restart {{ package_name }} service CentOS
     - name: Give insecure permissions to pub {{ pub_dir }}
       file:
         path: "{{ pub_dir }}"
@@ -26,12 +28,11 @@
         persistent: yes
     - name: manage selinux settings
       sefcontext:
-        target: /var/ftp/pub
+        target: "{{ pub_dir }}"
         setype: public_content_rw_t
         state: present
       notify:
         - run restorecon
-        - restart {{ package_name }} service CentOS
     - name: get service facts
       service_facts:
     - name: check firewalld status
