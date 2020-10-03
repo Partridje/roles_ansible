@@ -26,6 +26,15 @@
         name: ftpd_anon_write
         state: yes
         persistent: yes
+    - name: Allow full read/write access through SELinux for el7+
+      seboolean:
+        name: ftpd_full_access
+        state: yes
+        persistent: yes
+      tags: vsftpd
+      when:
+       - ansible_os_family == 'RedHat'
+       - ansible_distribution_major_version >= "7"
     - name: manage selinux settings
       sefcontext:
         target: "{{ pub_dir }}"
