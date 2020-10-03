@@ -2,7 +2,8 @@
   - name: Check version Linux
     debug: var=ansible_os_family
   - name: ansible-galaxy collection install ansible.posix
-    local_action: ansible.builtin.command /usr/bin/shell ansible-galaxy collection install ansible.posix
+    shell: ansible-galaxy collection install ansible.posix
+    delegate_to: localhost
     
   - block:
     - name: install {{ package_name }}
