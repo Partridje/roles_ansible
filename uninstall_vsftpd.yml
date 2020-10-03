@@ -1,0 +1,14 @@
+---
+- name: Uninstall vsftpd
+  hosts: all
+  tasks:
+    - name: uninstall vsftpd
+      yum:
+        name: vsftpd
+        state: absent
+    - name: close port 20
+      firewalld:
+        port: 20/tcp
+        permanent: yes
+        state: disabled
+...
