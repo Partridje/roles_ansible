@@ -23,10 +23,10 @@
         port: "{{ http_port }}"
         permanent: yes
         state: enabled
-    when: ansible_os_family == "CentOS"
+    when: ansible_os_family == "RedHat"
     
-  - name: Copy files in {{ destin_folder }}
-    copy: src={{ item }} dest={{ destin_folder }} mode=0555
+  - name: Copy files in {{ dest_folder }}
+    copy: src={{ item }} dest={{ dest_folder }} mode=0555
     loop:
       - "index.html"
     notify:
