@@ -1,7 +1,4 @@
 ---
-- name: install {{ package_name }}
-  hosts: all
-  tasks:
   - name: Check version Linux
     debug: var=ansible_os_family
     
