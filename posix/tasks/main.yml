@@ -1,3 +1,4 @@
 ---
+- hosts: localhost
   - name: ansible-galaxy collection install ansible.posix
     shell: ansible-galaxy collection install ansible.posix

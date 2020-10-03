@@ -1,6 +1,9 @@
 ---
   - name: Check version Linux
     debug: var=ansible_os_family
+  - name: ansible-galaxy collection install ansible.posix
+    shell: ansible-galaxy collection install ansible.posix
+    delegate_to: 127.0.0.1
     
   - block:
     - name: install {{ package_name }}
