@@ -13,13 +13,6 @@
     when:
       - ansible_os_family == 'RedHat'
       - ansible_distribution_major_version >= "7"
-  - name: Allow access to home directories
-    seboolean:
-      name: ftp_home_dir
-      state: yes
-      persistent: yes
-    when: var_exists.rc == 0
-    tags: vsftpd
   - name: manage selinux settings
     sefcontext:
       target: "{{ pub_dir }}"
